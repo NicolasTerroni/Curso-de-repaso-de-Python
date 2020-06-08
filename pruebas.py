@@ -1,17 +1,10 @@
-# -*- coding: utf-8 -*-
-def foering_exchange(amount):
-    ars_to_usd_rate= 91
-    return amount / ars_to_usd_rate
+edad=int(input("Ingresar edad: "))
 
-def run():
-    print("CALCULADORA DE DIVISAS - by NicolasTerroni")
-    print("Convierte pesos argentinos a dolares.")
-    print("")
-
-run()
-
-amount=float(input("What amount of pesos do you want to convert to U$S?: "))
-
-resultado = foering_exchange(amount)
-
-print(f"${amount} pesos argentinos, son ${resultado} dolares.")
+if 0<edad<100:
+    print("Edad ingresada correctamente")
+    if edad<18:
+        print("Usted es menor de edad.")
+    else:
+        print("Usted es mayor de edad.")
+else:
+    print("Numero no valido.")
