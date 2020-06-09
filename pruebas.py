@@ -1,10 +1,28 @@
-edad=int(input("Ingresar edad: "))
-
-if 0<edad<100:
-    print("Edad ingresada correctamente")
-    if edad<18:
-        print("Usted es menor de edad.")
+def is_prime(number):
+    if number < 2:
+        return False
+    elif number == 2:
+        return True
+    elif number > 2 and number % 2 == 0:
+        return False
     else:
-        print("Usted es mayor de edad.")
-else:
-    print("Numero no valido.")
+        for i in range(3, number):
+            if number % i == 0:
+                return False
+    return True
+
+def run():
+    pass
+
+    number = int(input("Input your number: "))
+
+    result = is_prime(number)
+
+    if result:
+        print(f"{number} is a prime number.")
+    else:
+        print(f"{number} isn't a prime number.")
+
+
+if __name__ == "__main__":
+    run()
