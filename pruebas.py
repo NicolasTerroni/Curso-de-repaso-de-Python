@@ -1,114 +1,29 @@
-# Ahorcado usando listas, usamos ascii arts
-import random
+# Busqueda binaria, tambien agregamos que la ordene y la imprima antes del resultado.
 
-IMAGES = ['''
-    +---+
-    |   |
-        |
-        |
-        |
-        |
-    =========''', '''
-    +---+
-    |   |
-    O   |
-        |
-        |
-        |
-    =========''', '''
-    +---+
-    |   |
-    O   |
-    |   |
-        |
-        |
-    =========''', '''
-    +---+
-    |   |
-    O   |
-   /|   |
-        |
-        |
-    =========''', '''
-    +---+
-    |   |
-    O   |
-   /|\  |
-        |
-        |
-    =========''', '''
-    +---+
-    |   |
-    O   |
-   /|\  |
-    |   |
-        |
-    =========''', '''
-    +---+
-    |   |
-    O   |
-   /|\  |
-    |   |
-   /    |
-        |
-    =========''', '''
-    +---+
-    |   |
-    O   |
-   /|\  |
-    |   |
-   / \  |
-        |
-    =========''']
+list = [24,8,82,1,54,2,6,4,47,18,7,15]
 
-WORDS = ["python","django","framework","script","shell","scrapping","cookies","cache","editor","evernote","platzi","youtube"]
-
-
-def display(hidden_word,tries):
-    print(IMAGES[tries])
-    print("")
-    print(f"[{hidden_word}]")
-
-def random_word():
-    idx = random.randint(0 , len(WORDS) -1 )
-    return WORDS[idx]
-
-def run():
-    word = random_word()
-    hidden_word = ["-"]*len(word)
-    tries = 0
-    alive = True
+def binary(list, get_number, low, high):
+    list.sort()
+    if low > high:
+        # primer caso base (si no encontramos el numero)
+        return False
     
-    while alive:
-        display(hidden_word, tries)
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        get_letter = str(input("Intenta una letra ---> "))
+    mid = (low + high) // 2
+    
+    if list[mid] == get_number:
+        # segundo caso base (si encontramos el numero)
+        return True
+    elif list[mid] > get_number:
+        return binary(list,get_number,low,mid - 1)
+    else:
+        return binary(list,get_number,mid + 1,high)
 
-        letter_index = []
-        
-        for idx in range(len(word)):
-            if get_letter == word[idx]:
-                letter_index.append(idx)
-        
-        if len(letter_index) == 0:
-            tries += 1
-            if tries == 7:
-                display(hidden_word, tries)
-                print("")
-                print(f"Perdiste, la palabra era: {word}")
-                alive = False
-        else:
-            for idx in letter_index:
-                hidden_word[idx] = get_letter
-            letter_index = []
+get_number = int(input("Danos el numero para buscar: "))
+res = binary(list,get_number,0, len(list)-1)
 
-        if "-" not in hidden_word:
-            display(hidden_word, tries)
-            print("")
-            print(f"Ganaste! la palabra era {word}")
-            alive = False
-            
-
-if __name__ == "__main__":
-    print("------- A H O R C A D O -------")
-    run()
+if res is True:
+    print(list)
+    print(f"Si se encuentra en la lista.")
+else:
+    print(list)
+    print("El numero no esta en la lista.")
