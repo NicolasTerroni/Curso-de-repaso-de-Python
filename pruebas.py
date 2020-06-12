@@ -1,29 +1,21 @@
-# Busqueda binaria, tambien agregamos que la ordene y la imprima antes del resultado.
+#Diccionarios,iterar mostrando una lista de claififcaciones y calcular promedio de notas
 
-list = [24,8,82,1,54,2,6,4,47,18,7,15]
-
-def binary(list, get_number, low, high):
-    list.sort()
-    if low > high:
-        # primer caso base (si no encontramos el numero)
-        return False
+calificaciones = {}
+print("              Calificaciones                     ")
+print("----------------------------------------------------")
+calificaciones["Alumno-1"] = 9.3
+calificaciones["Alumno-2"] = 8.8
+calificaciones["Alumno-3"] = 9.0
+calificaciones["Alumno-4"] = 7.9
+calificaciones["Alumno-5"] = 9.2
+lista = []
+promedio = 0
+for key, value in calificaciones.items():
+    print(f"{key}.................................{value}")
+    lista.append(value)
+    promedio+=value
     
-    mid = (low + high) // 2
-    
-    if list[mid] == get_number:
-        # segundo caso base (si encontramos el numero)
-        return True
-    elif list[mid] > get_number:
-        return binary(list,get_number,low,mid - 1)
-    else:
-        return binary(list,get_number,mid + 1,high)
-
-get_number = int(input("Danos el numero para buscar: "))
-res = binary(list,get_number,0, len(list)-1)
-
-if res is True:
-    print(list)
-    print(f"Si se encuentra en la lista.")
-else:
-    print(list)
-    print("El numero no esta en la lista.")
+promedio = promedio/(len(lista))
+print("----------------------------------------------------")
+print(f"Promedio de calificaciones: {promedio}")
+print("----------------------------------------------------")
