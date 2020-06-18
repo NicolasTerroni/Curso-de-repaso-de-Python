@@ -1,6 +1,17 @@
-# POO
+# POO (it doesn't simulate perfecly a tv but it was usefull for practicing heredity and remember how it works on python)
 
-class TVs:
+class Electronics:
+    def __init__(self):
+         self.power = False
+    
+    def turn_on(self):
+            self.power=True
+            
+    def turn_off(self):
+            self.power=False
+            
+#---------------------------------------------------------------------------------------
+class TVs(Electronics):
     _STATUS = [
     """             O         O
                         \\     // 
@@ -33,41 +44,47 @@ class TVs:
 ]
 
     def __init__(self, size, brand):
-        self.power = False
+        super().__init__()
         self.screen_size = size
         self.brand_name = brand
-    def switch_power(self):
-        if self.power==False:
-            self.power=True
-            self.__display_screen()
-        else:
-            self.power=False
-            self.__display_screen()
+        self.power=False
 
-    def __display_screen(self):
+    def display_screen(self):
         if self.power==False:
             print( self._STATUS[0])
         else: 
             print( self._STATUS[1])
         
     def show_info(self):
-        print(f"Modelo: {self.screen_size}. De pantalla {self.screen_size}.")
+        print(f"Model: {self.screen_size}. Screen size: {self.screen_size}.")
 
-
+# --------------------------------------------------------------------------------------------------------------
 plasmaTV = TVs("40x20", "Samsung")
 
 while True:
     command = str(input("""
-    You've got the remote.. make a move:
-    1) Turn on/off
-    2) Show info
-    3) Drop the remote
+    You've got the remote.. tv is off, make a move:
+    1) Turn on
+    2) Drop the remote
     ---------> """))
     if command == "1":
-        plasmaTV.switch_power()
-    elif command == "2":
-        plasmaTV.show_info()
+        plasmaTV.turn_on()
+        plasmaTV.display_screen()
+        while True:
+            command = str(input("""
+            You've got the remote.. make a move:
+            1) Turn off
+            2) Show info
+            3) Drop the remote
+            ---------> """))
+            if command=="1":
+                plasmaTV.turn_off()
+                plasmaTV.display_screen()
+            elif command=="2":
+                plasmaTV.show_info()
+            else:
+                break
     else:
         break
-
+  
 
