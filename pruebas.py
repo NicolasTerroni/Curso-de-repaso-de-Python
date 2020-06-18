@@ -1,82 +1,73 @@
-# Archivos externos, contar cuantas veces aparece una palabra en un archivo .css
-from io import open
-f = open("Desktop/prueba.txt","r")
+# POO
 
-list = f.readlines()
-counter = 0
-find = input("Ingrese palabra a buscar: ")
-for line in list:
-    if find in line:
-        counter += 1
+class TVs:
+    _STATUS = [
+    """             O         O
+                        \\     // 
+                         \\   //
+                          \\ // 
+                      /~~~~~\
+            ,----------------------------,
+            | ,------------------------ , |
+            | |                              | |
+            | |                              | |
+            | |                              | |
+            | |                              | |
+            | |_______________| |
+            |_________________|
+            |_________________| """,
+    """              O         O
+                        \\     // 
+                         \\   //
+                          \\ // 
+                      /~~~~~\
+            ,----------------------------,
+            | ,------------------------ , |
+            | |                              | |
+            | |   TA PRENDIDO   | |
+            | |        JAJAJA          | |
+            | |                              | |
+            | |_______________| |
+            |_________________|
+            |_________________|"""
+]
 
-print(f"La palabra '{find}', aparece {counter} veces en el archivo.")
+    def __init__(self, size, brand):
+        self.power = False
+        self.screen_size = size
+        self.brand_name = brand
+    def switch_power(self):
+        if self.power==False:
+            self.power=True
+            self.__display_screen()
+        else:
+            self.power=False
+            self.__display_screen()
 
-f.close()
-
-"""
-file: 
-
-body
-{
-    color: #333;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    margin: 0;
-    padding: 0;
-}
-
-#cabecera
-{
-    text-align: center;
-    background: #6c7181;
-    box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.5);
-    color: white;
-    font-weight: bold;
-    margin: 0;
-    padding: 0.5em;
-}
-
-#cabecera #logo
-{
-    text-align: center;
-    width: 20px;
-    vertical-align: middle;
-}
-
-#cabecera #tagline
-{
-    text-align: center;
-    padding: 0 0 0 1em;
-    font-weight: normal;
-    font-size: 0.8em;
-}
+    def __display_screen(self):
+        if self.power==False:
+            print( self._STATUS[0])
+        else: 
+            print( self._STATUS[1])
+        
+    def show_info(self):
+        print(f"Modelo: {self.screen_size}. De pantalla {self.screen_size}.")
 
 
-#container
-{
-    width: 70%;
-    padding: 0;
-    text-align: left;
-    border: 1px solid #DDD;
-    margin: 0 auto;
-}
+plasmaTV = TVs("40x20", "Samsung")
 
-#container h1
-{
-    font-size: 20px;
-}
-#post
-{
-    text-align: center;
-    padding: 1em;
-}
+while True:
+    command = str(input("""
+    You've got the remote.. make a move:
+    1) Turn on/off
+    2) Show info
+    3) Drop the remote
+    ---------> """))
+    if command == "1":
+        plasmaTV.switch_power()
+    elif command == "2":
+        plasmaTV.show_info()
+    else:
+        break
 
-#footer
-{
-    background: #777;
-    color: white;
-    text-align: center;
-    padding: 0.5em;
-}
-"""
+
