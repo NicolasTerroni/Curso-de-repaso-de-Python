@@ -21,7 +21,7 @@ class Bluethoot_speaker:
         self.battery = 70
         self.volume = 50
         self.power = False
-        self.conect = False
+        self.connect = False
 
     def on_off(self):
         if self.power == False:
@@ -34,10 +34,10 @@ class Bluethoot_speaker:
     def searching(self):
         if self.conect == False:
             print(STATUS[2])
-            self.conect = True
+            self.connect = True
             print(STATUS[4])
         else:
-            self.conect = False
+            self.connect = False
             print(STATUS[5])
 # if this finds and match a device it starts playing its audio
 
